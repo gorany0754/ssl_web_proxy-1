@@ -17,6 +17,35 @@ def getInfo(data):
         name = host
     return host, name
 
+"""
+def getContentLength(data):
+    try:
+        len = int(data.split('Content-Length: ')[1].split(' ')[0])
+        return len
+    except:
+        return 0
+
+
+def recvn(sock, length):
+    buf = ''
+    for _ in range(length):
+        t = sock.recv(1)
+        if len(t) != 1:
+            return buf
+        buf += t
+
+        if len(buf) == length:
+            return buf
+
+
+def recvuntil(sock, delim):
+    ret = ''
+    while True:
+        t = sock.recv(1)
+        ret += t
+        if ret.endswith(delim):
+            return ret
+"""
 
 def genCert(name):
     cmd = 'cd ' + basedir + ' & _make_site.bat ' + name
