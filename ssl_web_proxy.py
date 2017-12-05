@@ -60,7 +60,7 @@ def recvuntil(sock, delim):
             return ret
 
 
-def relaying1(sock):
+def relaying(sock):
     res = ''
     while 1:
         buf = sock.recv(4096)
@@ -68,6 +68,7 @@ def relaying1(sock):
         if not buf:
             break
     return res
+
 
 def relaying2(sock):
     res_header = recvuntil(sock, '\r\n\r\n')
@@ -103,15 +104,8 @@ class SockHandler(BaseRequestHandler):
                 server_sock.connect((host, 443))
 
                 server_sock.sendall(req)
-
-                """
-                while 1:    
-                    res = server_sock.recv(4096)
-                    if not res:
-                        break
-                """
-                res = relaying1(server_sock)
-                #res = relaying2(server_sock)
+                res = relaying(server_sock)
+                # res = relaying2(server_sock)
                 client_sock.sendall(res)
 
             except:
