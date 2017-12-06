@@ -89,8 +89,7 @@ class SockHandler(BaseRequestHandler):
         if 'CONNECT' in self.data:
             host, name = getInfo(self.data)
             print host, name
-            self.request.sendall(
-                'HTTP/1.1 Connection established\r\n\r\n')  # respond to client with 'connection established' message
+            #self.request.sendall('HTTP/1.1 Connection established\r\n\r\n')  # respond to client with 'connection established' message
 
             genCert(name)
             client_sock = ssl.wrap_socket(self.request, server_side=True,
